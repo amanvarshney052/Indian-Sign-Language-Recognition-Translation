@@ -3,7 +3,16 @@ import {
   WebSocketServerMessage,
 } from '../types/api';
 
-const DEFAULT_WS_URL = import.meta.env.VITE_WS_URL || 'ws://localhost:8000/ws/predict';
+const DEFAULT_WS_URL = (() => {
+  if (import.meta.env.VITE_WS_URL) {
+    return import.meta.env.VITE_WS_URL;
+  }
+  if (typeof window !== 'undefined' && window.location?.host) {
+    const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+    return `${protocol}//${window.location.host}/ws/predict`;
+  }
+  return 'ws://localhost:8000/ws/predict';
+})();
 
 export type WebSocketStatus = 'disconnected' | 'connecting' | 'connected' | 'error';
 
