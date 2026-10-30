@@ -6,6 +6,8 @@ import { ModeFeatureCard } from '../components/dashboard/ModeFeatureCard';
 import { BackendStatusCard } from '../components/dashboard/BackendStatusCard';
 import { ActivityChart } from '../components/dashboard/ActivityChart';
 import { RecentTranslationsList } from '../components/dashboard/RecentTranslationsList';
+import { ISLOverviewCard } from '../components/dashboard/ISLOverviewCard';
+import { ISLSigningGuideCard } from '../components/dashboard/ISLSigningGuideCard';
 import { useBackendStatus } from '../hooks/useBackendStatus';
 import { historyService } from '../services/history';
 import { SessionStatistics, TranslationHistoryItem } from '../types/translation';
@@ -188,6 +190,8 @@ export const DashboardPage: React.FC = () => {
         {/* Left Column (7 cols): Large Feature Card & Mode Cards */}
         <div className="lg:col-span-7 space-y-6">
           <ModeFeatureCard />
+          <ISLOverviewCard />
+          <ISLSigningGuideCard />
         </div>
 
         {/* Right Column (5 cols): Status, Activity Chart, Recent Translations */}
