@@ -15,6 +15,31 @@ from preprocessing.normalization import normalize_dual_hand_landmarks, normalize
 from preprocessing.dataset_loader import load_label_map
 
 
+def _patch_keras_deserialization():
+    """Ensure cross-version compatibility for Keras layer deserialization.
+    Fixes 'Unrecognized keyword arguments passed to Dense: quantization_config'
+    when loading models across different Keras 3 minor versions.
+    """
+    try:
+        import keras
+        # Patch all Keras layers to strip unsupported serialization kwargs like quantization_config
+        for attr in dir(keras.layers):
+            cls = getattr(keras.layers, attr)
+            if isinstance(cls, type) and issubclass(cls, keras.layers.Layer):
+                orig_init = cls.__init__
+                def _wrap_init(original):
+                    def _patched_init(self, *args, **kwargs):
+                        kwargs.pop("quantization_config", None)
+                        return original(self, *args, **kwargs)
+                    return _patched_init
+                cls.__init__ = _wrap_init(orig_init)
+    except Exception:
+        pass
+
+
+_patch_keras_deserialization()
+
+
 class ISLModelService:
     def __init__(self):
         self.static_model: Optional[keras.Model] = None
