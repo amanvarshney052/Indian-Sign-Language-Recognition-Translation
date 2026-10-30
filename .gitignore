@@ -1,0 +1,26 @@
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.pyc
+venv/
+.venv/
+
+# Node
+node_modules/
+dist/
+build/
+
+# IDE
+.vscode/
+.idea/
+
+# Raw Datasets (multi-gigabyte video and image frames)
+isldata/
+
+# Temp / debug files
+test_crop.jpg
+*.log

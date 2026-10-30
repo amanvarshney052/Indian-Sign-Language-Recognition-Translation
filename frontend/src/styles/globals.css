@@ -1,0 +1,93 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --sage-primary: #D5E2C2;
+    --bg-main: #F7F8F4;
+    --card-bg: #FFFFFF;
+    --surface-soft: #F0F2F3;
+    --text-primary: #252720;
+    --text-secondary: #747873;
+    --accent-blue: #B7C8FF;
+    --accent-lavender: #D1B9E8;
+    --accent-yellow: #FFE17A;
+    --accent-coral: #F1B6B9;
+  }
+
+  body {
+    background-color: #F7F8F4;
+    color: #252720;
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Accessibility focus indicator */
+  *:focus-visible {
+    outline: 2px solid #252720;
+    outline-offset: 2px;
+  }
+}
+
+/* Custom subtle scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #D9DDCF;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #A4BF80;
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Card utilities */
+.pastel-card {
+  background-color: #FFFFFF;
+  border-radius: 22px;
+  box-shadow: 0 4px 20px -2px rgba(37, 39, 32, 0.04), 0 1px 3px 0 rgba(37, 39, 32, 0.02);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.pastel-card:hover {
+  box-shadow: 0 10px 28px -4px rgba(37, 39, 32, 0.06), 0 2px 6px 0 rgba(37, 39, 32, 0.03);
+}
+
+.pill-button {
+  border-radius: 9999px;
+  transition: all 0.2s ease-in-out;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+}
+
+.scanning-laser {
+  background: linear-gradient(
+    180deg,
+    rgba(213, 226, 194, 0) 0%,
+    rgba(213, 226, 194, 0.4) 50%,
+    rgba(132, 164, 91, 0.9) 100%
+  );
+  box-shadow: 0 0 15px rgba(132, 164, 91, 0.6);
+}
+
