@@ -22,7 +22,7 @@ export const ISLSigningGuideCard: React.FC = () => {
   ];
 
   return (
-    <div className="bg-white rounded-3xl p-6 sm:p-7 shadow-soft border border-[#F0F2F3] space-y-6">
+    <div className="bg-white rounded-3xl p-6 sm:p-7 shadow-soft border border-[#F0F2F3] flex flex-col justify-between space-y-6 h-full">
       <div className="flex items-center justify-between">
         <div>
           <div className="flex items-center gap-2">
@@ -138,3 +138,4 @@ export const ISLSigningGuideCard: React.FC = () => {
     </div>
   );
 };
+

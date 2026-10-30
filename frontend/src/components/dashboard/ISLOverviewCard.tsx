@@ -17,7 +17,7 @@ export const ISLOverviewCard: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'facts' | 'linguistics' | 'corpus'>('facts');
 
   return (
-    <div className="bg-white rounded-3xl p-6 sm:p-7 shadow-soft border border-[#F0F2F3] space-y-6">
+    <div className="bg-white rounded-3xl p-6 sm:p-7 shadow-soft border border-[#F0F2F3] flex flex-col justify-between space-y-6 h-full">
       {/* Header with Navigation Pills */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
@@ -261,3 +261,4 @@ export const ISLOverviewCard: React.FC = () => {
     </div>
   );
 };
+

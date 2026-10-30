@@ -186,17 +186,15 @@ export const DashboardPage: React.FC = () => {
         </div>
       )}
 
-      {/* 4. Perfectly Balanced Two-Column Layout */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-7 items-start">
-        {/* Left Column: AI Studio Hero, Mode Selector, Linguistics & Signing Guide */}
-        <div className="space-y-6">
+      {/* 4. Section 1: AI Translation Studio & Quick Controls (Row 1) */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-7 items-stretch">
+        {/* Left: AI Studio Hero & Mode Selectors */}
+        <div>
           <ModeFeatureCard />
-          <ISLOverviewCard />
-          <ISLSigningGuideCard />
         </div>
 
-        {/* Right Column: Server Health, Recent Translations, Activity Analytics & National Initiatives */}
-        <div className="space-y-6">
+        {/* Right: Server Status & Recent Translations Feed */}
+        <div className="flex flex-col justify-between space-y-6">
           <BackendStatusCard
             isOnline={isOnline}
             statusData={statusData}
@@ -216,9 +214,25 @@ export const DashboardPage: React.FC = () => {
               }
             }}
           />
+        </div>
+      </div>
 
+      {/* 5. Section 2: Activity Analytics & Cultural Linguistics (Row 2) */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-7 items-stretch">
+        <div className="h-full">
           <ActivityChart />
+        </div>
+        <div className="h-full">
+          <ISLOverviewCard />
+        </div>
+      </div>
 
+      {/* 6. Section 3: Camera Signing Best Practices & National Standards (Row 3) */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-7 items-stretch">
+        <div className="h-full">
+          <ISLSigningGuideCard />
+        </div>
+        <div className="h-full">
           <ISLResourcesCard />
         </div>
       </div>

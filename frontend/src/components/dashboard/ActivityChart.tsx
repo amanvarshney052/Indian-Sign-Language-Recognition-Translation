@@ -27,7 +27,7 @@ export const ActivityChart: React.FC<ActivityChartProps> = ({
   data = DEFAULT_ACTIVITY,
 }) => {
   return (
-    <div className="bg-white rounded-3xl p-6 shadow-soft border border-[#F0F2F3]">
+    <div className="bg-white rounded-3xl p-6 shadow-soft border border-[#F0F2F3] flex flex-col justify-between h-full">
       <div className="flex items-center justify-between mb-4">
         <div>
           <div className="flex items-center gap-2">
