@@ -8,6 +8,7 @@ import { ActivityChart } from '../components/dashboard/ActivityChart';
 import { RecentTranslationsList } from '../components/dashboard/RecentTranslationsList';
 import { ISLOverviewCard } from '../components/dashboard/ISLOverviewCard';
 import { ISLSigningGuideCard } from '../components/dashboard/ISLSigningGuideCard';
+import { ISLResourcesCard } from '../components/dashboard/ISLResourcesCard';
 import { useBackendStatus } from '../hooks/useBackendStatus';
 import { historyService } from '../services/history';
 import { SessionStatistics, TranslationHistoryItem } from '../types/translation';
@@ -185,17 +186,17 @@ export const DashboardPage: React.FC = () => {
         </div>
       )}
 
-      {/* 4. Main Two-Column Layout */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-        {/* Left Column (7 cols): Large Feature Card & Mode Cards */}
-        <div className="lg:col-span-7 space-y-6">
+      {/* 4. Perfectly Balanced Two-Column Layout */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-7 items-start">
+        {/* Left Column: AI Studio Hero, Mode Selector, Linguistics & Signing Guide */}
+        <div className="space-y-6">
           <ModeFeatureCard />
           <ISLOverviewCard />
           <ISLSigningGuideCard />
         </div>
 
-        {/* Right Column (5 cols): Status, Activity Chart, Recent Translations */}
-        <div className="lg:col-span-5 space-y-6">
+        {/* Right Column: Server Health, Recent Translations, Activity Analytics & National Initiatives */}
+        <div className="space-y-6">
           <BackendStatusCard
             isOnline={isOnline}
             statusData={statusData}
@@ -204,8 +205,6 @@ export const DashboardPage: React.FC = () => {
             latencyMs={latencyMs}
             onRefresh={refetch}
           />
-
-          <ActivityChart />
 
           <RecentTranslationsList
             items={historyItems}
@@ -217,6 +216,10 @@ export const DashboardPage: React.FC = () => {
               }
             }}
           />
+
+          <ActivityChart />
+
+          <ISLResourcesCard />
         </div>
       </div>
     </div>
