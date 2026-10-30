@@ -1,14 +1,13 @@
 # ==========================================
 # Stage 1: Build Frontend (Vite + React)
 # ==========================================
-FROM node:20-alpine AS frontend-builder
+FROM node:20-slim AS frontend-builder
 WORKDIR /app/frontend
 
 COPY frontend/package*.json ./
-RUN npm ci
+RUN npm install
 
 COPY frontend/ ./
-# Build production bundle into frontend/dist
 RUN npm run build
 
 # ==========================================
@@ -25,19 +24,18 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libgomp1 \
     && rm -rf /var/lib/apt/lists/*
 
-# Install Python dependencies
-COPY requirements.txt ./
-# Use opencv-python-headless to avoid GUI/X11 requirements on server
-RUN pip install --no-cache-dir -r requirements.txt && \
-    pip install --no-cache-dir opencv-python-headless
+# Install Python backend dependencies
+COPY requirements-server.txt ./requirements.txt
+RUN pip install --no-cache-dir --upgrade pip && \
+    pip install --no-cache-dir -r requirements.txt
 
-# Copy backend code, models, and preprocessed data
+# Copy application files
 COPY backend/ ./backend/
 COPY models/ ./models/
 COPY config.py run_server.py ./
 COPY preprocessing/ ./preprocessing/
 
-# Copy built frontend from Stage 1 into /app/frontend/dist
+# Copy built frontend bundle from Stage 1
 COPY --from=frontend-builder /app/frontend/dist ./frontend/dist
 
 # Expose port (default 8000)
